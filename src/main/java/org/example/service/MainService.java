@@ -2,10 +2,9 @@ package org.example.service;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.example.model.Bank;
+import org.example.model.BankAccount;
 import org.example.model.CarDealer;
-import org.example.model.Person;
-import org.example.repo.BankRepo;
+import org.example.repo.BankAccountRepo;
 import org.example.repo.CarDealerRepo;
 import org.example.repo.CarRepo;
 import org.example.repo.PersonRepo;
@@ -19,7 +18,7 @@ public class MainService {
     @Getter
     private final PersonRepo personRepo;
     @Getter
-    private final BankRepo bankRepo;
+    private final BankAccountRepo bankAccountRepo;
     @Getter
     private final CarRepo carRepo;
     @Getter
@@ -27,16 +26,16 @@ public class MainService {
     @Getter
     private final CarDealer carDealer;
     @Getter
-    private final Bank bank;
+    private final BankAccount bankAccount;
 
     @Autowired
-    public MainService(PersonRepo personRepo, BankRepo bankRepo, CarRepo carRepo, CarDealer carDealer, CarDealerRepo carDealerRepo, Bank bank) {
+    public MainService(PersonRepo personRepo, BankAccountRepo bankAccountRepo, CarRepo carRepo, CarDealer carDealer, CarDealerRepo carDealerRepo, BankAccount bankAccount) {
         this.personRepo = personRepo;
-        this.bankRepo = bankRepo;
+        this.bankAccountRepo = bankAccountRepo;
         this.carRepo = carRepo;
         this.carDealer = carDealer;
         this.carDealerRepo = carDealerRepo;
-        this.bank = bank;
+        this.bankAccount = bankAccount;
 
     }
 

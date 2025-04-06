@@ -1,12 +1,13 @@
 package org.example.service;
 
-import org.example.model.Bank;
+import org.example.model.BankAccount;
 import org.example.model.Car;
 import org.example.model.CarDealer;
 import org.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,13 +36,13 @@ public class TablesLoad {
         Person person9 = new Person("Юрий", 20);
         Person person10 = new Person("Даниил", 50);
         List<Person> people = Arrays.asList(person, person2, person3, person4, person5, person6, person7, person8, person9, person10);
-        Bank bank = mainService.getBank();
-        for (Person p : people) {
-            bank.addPerson(p);
-        }
-        mainService.getBankRepo().save(bank);
+        List<BankAccount> bankAccounts = new ArrayList<>();
         mainService.getPersonRepo().saveAll(people);
-
+        for (Person p : people) {
+            BankAccount bankAccount = mainService.getBankAccount().addAccount(p, Math.round(Math.random() * 10000000));
+            bankAccounts.add(bankAccount);
+        }
+        mainService.getBankAccountRepo().saveAll(bankAccounts);
 
 
     }

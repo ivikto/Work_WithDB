@@ -12,7 +12,7 @@ public class Car {
 
     @Id
     @Setter(AccessLevel.PRIVATE)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, length = 50)
