@@ -25,17 +25,8 @@ public class TablesLoad {
 
     // Persons
     public void loadPersons() {
-        Person person = new Person("Вадим", 43);
-        Person person2 = new Person("Кирилл", 21);
-        Person person3 = new Person("Николай", 52);
-        Person person4 = new Person("Виктор", 41);
-        Person person5 = new Person("Анатолий", 62);
-        Person person6 = new Person("Валерий", 25);
-        Person person7 = new Person("Олег", 18);
-        Person person8 = new Person("Сергей", 27);
-        Person person9 = new Person("Юрий", 20);
-        Person person10 = new Person("Даниил", 50);
-        List<Person> people = Arrays.asList(person, person2, person3, person4, person5, person6, person7, person8, person9, person10);
+
+        List<Person> people = getPeople();
         List<BankAccount> bankAccounts = new ArrayList<>();
         mainService.getPersonRepo().saveAll(people);
         for (Person p : people) {
@@ -45,6 +36,20 @@ public class TablesLoad {
         mainService.getBankAccountRepo().saveAll(bankAccounts);
 
 
+    }
+    private static List<Person> getPeople() {
+        Person person1 = new Person("Вадим", 43);
+        Person person2 = new Person("Кирилл", 21);
+        Person person3 = new Person("Николай", 52);
+        Person person4 = new Person("Виктор", 41);
+        Person person5 = new Person("Анатолий", 62);
+        Person person6 = new Person("Валерий", 25);
+        Person person7 = new Person("Олег", 18);
+        Person person8 = new Person("Сергей", 27);
+        Person person9 = new Person("Юрий", 20);
+        Person person10 = new Person("Даниил", 50);
+        List<Person> people = Arrays.asList(person1, person2, person3, person4, person5, person6, person7, person8, person9, person10);
+        return people;
     }
 
     public void loadCars() {

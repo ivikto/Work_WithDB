@@ -25,7 +25,7 @@ bin/
 *.log
 
 ### Application ###
-/src/main/resources/application.properties
+src/main/resources/application.properties
 *.properties
 *.yml
 !src/main/resources/application.*
