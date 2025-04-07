@@ -30,7 +30,7 @@ public class TablesLoad {
         List<BankAccount> bankAccounts = new ArrayList<>();
         mainService.getPersonRepo().saveAll(people);
         for (Person p : people) {
-            BankAccount bankAccount = mainService.getBankAccount().addAccount(p, Math.round(Math.random() * 10000000));
+            BankAccount bankAccount = new BankAccount(p, Math.round(Math.random() * 10000000));
             bankAccounts.add(bankAccount);
         }
         mainService.getBankAccountRepo().saveAll(bankAccounts);
@@ -53,19 +53,20 @@ public class TablesLoad {
     }
 
     public void loadCars() {
-        Car car = new Car("BMW M5", "Синий", 250, 8000000, mainService.getCarDealer());
-        Car car1 = new Car("Audi R8", "Красный", 270, 10000000, mainService.getCarDealer());
-        Car car2 = new Car("Chevrolet Cruze", "Бежевый", 180, 1000000, mainService.getCarDealer());
-        Car car3 = new Car("Lada Vesta", "Белый",  180,1800000, mainService.getCarDealer());
-        Car car4 = new Car("Lada Largus", "Коричневый",  160,1600000, mainService.getCarDealer());
-        Car car5 = new Car("Jeely Tugela", "Голубой",  200, 3600000,mainService.getCarDealer());
-        Car car6 = new Car("Mercedes C-class", "Черный",  250,8500000, mainService.getCarDealer());
-        Car car7 = new Car("Jetour T2", "Бежевый", 180, 3500000,mainService.getCarDealer());
-        Car car8 = new Car("Honda Accord", "Черный", 210, 2000000, mainService.getCarDealer());
-        Car car9 = new Car("Mitsubishi Lancer EVO", "Красный", 240, 3000000, mainService.getCarDealer());
-        Car car10 = new Car("Chery Tigo", "Голубой", 200, 4500000, mainService.getCarDealer());
+        CarDealer carDealer = new CarDealer("GoldCarDealer");
+        Car car = new Car("BMW M5", "Синий", 250, 8000000, carDealer);
+        Car car1 = new Car("Audi R8", "Красный", 270, 10000000, carDealer);
+        Car car2 = new Car("Chevrolet Cruze", "Бежевый", 180, 1000000, carDealer);
+        Car car3 = new Car("Lada Vesta", "Белый",  180,1800000, carDealer);
+        Car car4 = new Car("Lada Largus", "Коричневый",  160,1600000, carDealer);
+        Car car5 = new Car("Jeely Tugela", "Голубой",  200, 3600000, carDealer);
+        Car car6 = new Car("Mercedes C-class", "Черный",  250,8500000, carDealer);
+        Car car7 = new Car("Jetour T2", "Бежевый", 180, 3500000, carDealer);
+        Car car8 = new Car("Honda Accord", "Черный", 210, 2000000, carDealer);
+        Car car9 = new Car("Mitsubishi Lancer EVO", "Красный", 240, 3000000, carDealer);
+        Car car10 = new Car("Chery Tigo", "Голубой", 200, 4500000, carDealer);
         List<Car> cars = Arrays.asList(car, car1, car2, car3, car4, car5, car6, car7, car8, car9, car10);
-        CarDealer dealer = mainService.getCarDealer();
+        CarDealer dealer = carDealer;
         for (Car c : cars) {
             dealer.addCar(c);
         }

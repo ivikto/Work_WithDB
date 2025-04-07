@@ -22,7 +22,7 @@ public class BankAccount {
     private final String name = "BestBank";
 
 
-    private BankAccount(Person person, double initialBalance) {
+    public BankAccount(Person person, double initialBalance) {
         this.person = person;
         this.balance = initialBalance;
     }
