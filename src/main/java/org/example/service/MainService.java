@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.BankAccount;
@@ -8,6 +9,10 @@ import org.example.repo.BankAccountRepo;
 import org.example.repo.CarDealerRepo;
 import org.example.repo.CarRepo;
 import org.example.repo.PersonRepo;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,16 +44,16 @@ public class MainService {
     }
 
     @Transactional(readOnly = true)
-    public void run () {
+    public void run() {
 
-
-        List<Person> persons = personRepo.findByAge();
-        persons.forEach(System.out::println);
-        System.out.println(persons.size());
-        double balance = 5000000;
-        List<BankAccount> bankAccounts = bankAccountRepo.findByBalance(balance);
-        bankAccounts.forEach(System.out::println);
-        System.out.println("Количество аккаунтов у которых на счету: " + balance + " руб : " + bankAccounts.size());
+        List<PersonRepo.PersonBalanceProjection> persons = personRepo.findPeopleWithBalances();
+        persons.forEach(p ->
+                System.out.printf("│ %2d │ %-12s │ %3d │ %8.2f │%n",
+                        p.getId(),
+                        p.getUsername(),
+                        p.getAge(),
+                        p.getBalance())
+        );
 
 
     }
